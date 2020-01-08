@@ -1,0 +1,845 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #121212;
+  height: 100%;
+}
+
+@font-face {
+  font-family: glue1-spoticon;
+  src: url(https://open.scdn.co/cdn/fonts/spoticon_regular_2.d319d911.woff2)
+      format("woff2"),
+    url(https://open.scdn.co/cdn/fonts/spoticon_regular_2.ff4c6091.woff)
+      format("woff"),
+    url(https://open.scdn.co/cdn/fonts/spoticon_regular_2.127670b5.ttf)
+      format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+a,
+a:focus,
+a:hover {
+  text-decoration: none;
+}
+
+a {
+  color: #fff;
+  border-bottom: 1px solid transparent;
+}
+
+body {
+  min-width: 800px;
+  min-height: 600px;
+  display: flex;
+  z-index: 0;
+}
+
+body,
+button,
+input {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.015em;
+  color: #b3b3b3;
+  text-transform: none;
+  font-family: spotify-circular, spotify-circular-cyrillic,
+    spotify-circular-arabic, spotify-circular-hebrew, Helvetica Neue, Helvetica,
+    Arial, Hiragino Kaku Gothic Pro, Meiryo, MS Gothic, sans-serif;
+}
+
+#main {
+  width: 100%;
+}
+
+.cookie-modal--wrapper {
+  display: none;
+  text-align: left;
+  left: 8px;
+  position: fixed;
+  bottom: 8px;
+  max-width: 380px;
+  background-color: #2e77d0;
+  color: #fff;
+  border-radius: 4px;
+  padding: 16px;
+  z-index: 1;
+  font-weight: 400;
+  letter-spacing: 0.25px;
+  line-height: 16px;
+  font-size: 11px;
+}
+
+.cookie-modal__header {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.cookie-modal__button {
+  position: absolute;
+  background-color: transparent;
+  cursor: pointer;
+  top: 0;
+  right: 0px;
+  padding: 16px;
+  border: none;
+}
+
+.cookie-modal__p a {
+  outline: none;
+  text-decoration: underline;
+}
+
+.close-btn__svg {
+  width: 12px;
+  height: 12px;
+}
+
+.close-btn__svg path {
+  stroke: white;
+  stroke-width: 2px;
+}
+
+.root-bg {
+  /* background-color: #121212; */
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  position: fixed;
+}
+
+.root-top--container {
+  min-height: 100%;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-areas:
+    "nav-bar main-view"
+    "now-playing-bar now-playing-bar";
+  grid-template-rows: 1fr auto;
+  grid-template-columns: auto 1fr;
+}
+
+.root-top--nav-bar {
+  /* display: flex;
+  flex-direction: column; */
+  grid-area: nav-bar;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 230px;
+  z-index: 2;
+}
+
+.nav-bar__nav {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.nav-bar--wrapper {
+  display: flex;
+  padding-top: 24px;
+  flex-direction: column;
+}
+
+.nav-bar--header {
+  padding-bottom: 18px;
+}
+
+.nav-bar-footer {
+  flex-grow: 1;
+}
+
+.spotify-logo--text {
+  width: 131px;
+  height: 40px;
+}
+
+.nav-bar--logo {
+  display: block;
+  display: flex;
+  justify-content: center;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  padding: 0 24px;
+}
+
+.menu-item--text {
+  margin-left: 16px;
+}
+
+.home-icon,
+.library-icon {
+  display: none;
+}
+
+.search-icon--active {
+  display: none;
+}
+
+.menu-item--active:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  width: 4px;
+  left: 0px;
+  background-color: #1ed760;
+}
+
+.menu-group {
+  position: relative;
+}
+
+.cookie-privacy--wrapper {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 32px 0;
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+}
+
+.cookie-privacy--cookie,
+.cookie-privacy--privacy {
+}
+
+.cookie-privacy--line {
+  border-bottom: 1px solid #b3b3b3;
+  width: 13px;
+  margin: 7px;
+}
+
+.root-top--now-playing {
+  grid-area: now-playing-bar;
+  width: 100%;
+  z-index: 3;
+  background-color: #181818;
+}
+
+.sign-up-request--wrapper {
+  background-image: linear-gradient(90deg, #af2896, #509bf5);
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.sign-up-request--text-wrapper {
+  margin-left: 24px;
+}
+
+.sign-up-request--header {
+  font-size: 11px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  margin: 0 0 4px;
+}
+
+.sign-up-request--description {
+  font-size: 16px;
+  color: #fff;
+  text-transform: none;
+  letter-spacing: 0.05em;
+  font-weight: normal;
+}
+
+.sign-up-request--button-wrapper {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sign-up-request__button {
+  color: #2e77d0;
+  padding: 8px 48px;
+  cursor: pointer;
+  border: 0;
+  border-radius: 500px;
+  letter-spacing: 0.16em;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.now-playing-bar {
+  display: flex;
+  height: 90px;
+  padding: 0 16px;
+  align-items: center;
+}
+
+.now-playing-bar--left,
+.now-playing-bar--right {
+  width: 30%;
+}
+
+.now-playing-bar--center {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.player-controls--buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.control-button {
+  background-color: transparent;
+  border: none;
+  color: #b3b3b3;
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+}
+
+[class*=" spoticon-"]:before,
+[class^="spoticon-"]:before {
+  font-family: glue1-spoticon;
+  font-style: normal;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: inherit;
+  vertical-align: bottom;
+  display: inline-block;
+  text-decoration: inherit;
+}
+
+[class*=" spoticon-"]:hover,
+[class^="spoticon-"]:hover {
+  color: white;
+}
+
+.spoticon-pause-16:before {
+  content: "\f130";
+  font-size: 16px;
+}
+.spoticon-pause-24:before {
+  content: "\f1D3";
+  font-size: 24px;
+}
+.spoticon-pause-32:before {
+  content: "\f131";
+  font-size: 32px;
+}
+.spoticon-play-16:before {
+  content: "\f132";
+  font-size: 16px;
+}
+.spoticon-play-24:before {
+  content: "\f1C8";
+  font-size: 24px;
+}
+.spoticon-play-32:before {
+  content: "\f133";
+  font-size: 32px;
+}
+.spoticon-shuffle-16:before {
+  content: "\f144";
+  font-size: 16px;
+}
+.spoticon-shuffle-24:before {
+  content: "\f1D5";
+  font-size: 24px;
+}
+.spoticon-shuffle-32:before {
+  content: "\f145";
+  font-size: 32px;
+}
+.spoticon-skip-back-16:before {
+  content: "\f146";
+  font-size: 16px;
+}
+.spoticon-skip-back-24:before {
+  content: "\f1D6";
+  font-size: 24px;
+}
+.spoticon-skip-back-32:before {
+  content: "\f147";
+  font-size: 32px;
+}
+.spoticon-skip-forward-16:before {
+  content: "\f148";
+  font-size: 16px;
+}
+.spoticon-skip-forward-24:before {
+  content: "\f1D7";
+  font-size: 24px;
+}
+.spoticon-skip-forward-32:before {
+  content: "\f149";
+  font-size: 32px;
+}
+.spoticon-skipback15-16:before {
+  content: "\f280";
+  font-size: 16px;
+}
+.spoticon-skipback15-24:before {
+  content: "\f3CC";
+  font-size: 24px;
+}
+.spoticon-skipback15-32:before {
+  content: "\f281";
+  font-size: 32px;
+}
+.spoticon-skipforward15-16:before {
+  content: "\f283";
+  font-size: 16px;
+}
+.spoticon-skipforward15-24:before {
+  content: "\f3CD";
+  font-size: 24px;
+}
+.spoticon-skipforward15-32:before {
+  content: "\f284";
+  font-size: 32px;
+}
+.spoticon-repeat-16:before {
+  content: "\f13e";
+  font-size: 16px;
+}
+.spoticon-repeat-24:before {
+  content: "\f1D4";
+  font-size: 24px;
+}
+.spoticon-repeat-32:before {
+  content: "\f13f";
+  font-size: 32px;
+}
+.spoticon-repeatonce-16:before {
+  content: "\f200";
+  font-size: 16px;
+}
+.spoticon-repeatonce-24:before {
+  content: "\f201";
+  font-size: 24px;
+}
+.spoticon-repeatonce-32:before {
+  content: "\f202";
+  font-size: 32px;
+}
+.spoticon-menu-16:before {
+  content: "\f1FD";
+  font-size: 16px;
+}
+.spoticon-menu-32:before {
+  content: "\f1FE";
+  font-size: 32px;
+}
+.spoticon-artist-placeholder-32:before {
+  content: "\f103";
+  font-size: 32px;
+}
+.spoticon-track-16:before {
+  content: "\f156";
+  font-size: 16px;
+}
+.spoticon-track-32:before {
+  content: "\f157";
+  font-size: 32px;
+}
+.spoticon-video-16:before {
+  content: "\f26B";
+  font-size: 16px;
+}
+.spoticon-video-24:before {
+  content: "\f2A0";
+  font-size: 24px;
+}
+.spoticon-video-32:before {
+  content: "\f26C";
+  font-size: 32px;
+}
+.spoticon-volume-16:before {
+  content: "\f15e";
+  font-size: 16px;
+}
+.spoticon-volume-off-16:before {
+  content: "\f1EF";
+  font-size: 16px;
+}
+.spoticon-volume-onewave-16:before {
+  content: "\f203";
+  font-size: 16px;
+}
+.spoticon-volume-twowave-16:before {
+  content: "\f206";
+  font-size: 16px;
+}
+.spoticon-spotifylogo-16:before {
+  content: "\f298";
+  font-size: 16px;
+}
+.spoticon-spotifylogo-32:before {
+  content: "\f299";
+  font-size: 32px;
+}
+.spoticon-spotify-connect-16:before {
+  content: "\f1A3";
+  font-size: 16px;
+}
+.spoticon-spotify-connect-24:before {
+  content: "\f1D8";
+  font-size: 24px;
+}
+.spoticon-spotify-connect-32:before {
+  content: "\f1A4";
+  font-size: 32px;
+}
+.spoticon-connect-to-devices-16:before {
+  content: "\f328";
+  font-size: 16px;
+}
+.spoticon-connect-to-devices-32:before {
+  content: "\f327";
+  font-size: 32px;
+}
+.spoticon-device-arm-16:before {
+  content: "\f305";
+  font-size: 16px;
+}
+.spoticon-device-arm-32:before {
+  content: "\f306";
+  font-size: 32px;
+}
+.spoticon-device-car-16:before {
+  content: "\f317";
+  font-size: 16px;
+}
+.spoticon-device-car-32:before {
+  content: "\f318";
+  font-size: 32px;
+}
+.spoticon-device-computer-16:before {
+  content: "\f29B";
+  font-size: 16px;
+}
+.spoticon-device-computer-32:before {
+  content: "\f29C";
+  font-size: 32px;
+}
+.spoticon-device-mobile-16:before {
+  content: "\f301";
+  font-size: 16px;
+}
+.spoticon-device-mobile-32:before {
+  content: "\f302";
+  font-size: 32px;
+}
+.spoticon-device-multispeaker-16:before {
+  content: "\f315";
+  font-size: 16px;
+}
+.spoticon-device-multispeaker-32:before {
+  content: "\f316";
+  font-size: 32px;
+}
+.spoticon-device-other-16:before {
+  content: "\f29F";
+  font-size: 16px;
+}
+.spoticon-device-other-32:before {
+  content: "\f300";
+  font-size: 32px;
+}
+.spoticon-device-speaker-16:before {
+  content: "\f29D";
+  font-size: 16px;
+}
+.spoticon-device-speaker-32:before {
+  content: "\f29E";
+  font-size: 32px;
+}
+.spoticon-device-tablet-16:before {
+  content: "\f303";
+  font-size: 16px;
+}
+.spoticon-device-tablet-32:before {
+  content: "\f304";
+  font-size: 32px;
+}
+.spoticon-device-tv-16:before {
+  content: "\f307";
+  font-size: 16px;
+}
+.spoticon-device-tv-32:before {
+  content: "\f308";
+  font-size: 32px;
+}
+.spoticon-devices-16:before {
+  content: "\f213";
+  font-size: 16px;
+}
+.spoticon-devices-32:before {
+  content: "\f214";
+  font-size: 32px;
+}
+.spoticon-heart-16:before {
+  content: "\f320";
+  font-size: 16px;
+}
+.spoticon-heart-24:before {
+  content: "\f3DB";
+  font-size: 24px;
+}
+.spoticon-heart-32:before {
+  content: "\f31F";
+  font-size: 32px;
+}
+.spoticon-heart-active-16:before {
+  content: "\f322";
+  font-size: 16px;
+}
+.spoticon-heart-active-24:before {
+  content: "\f3DC";
+  font-size: 24px;
+}
+.spoticon-heart-active-32:before {
+  content: "\f321";
+  font-size: 32px;
+}
+.spoticon-block-16:before {
+  content: "\f106";
+  font-size: 16px;
+}
+.spoticon-block-32:before {
+  content: "\f107";
+  font-size: 32px;
+}
+.spoticon-ban-16:before {
+  content: "\f31E";
+  font-size: 16px;
+}
+.spoticon-ban-32:before {
+  content: "\f31D";
+  font-size: 32px;
+}
+.spoticon-thumbs-down-16:before {
+  content: "\f14e";
+  font-size: 16px;
+}
+.spoticon-thumbs-down-32:before {
+  content: "\f14f";
+  font-size: 32px;
+}
+.spoticon-thumbs-up-16:before {
+  content: "\f150";
+  font-size: 16px;
+}
+.spoticon-thumbs-up-32:before {
+  content: "\f151";
+  font-size: 32px;
+}
+.spoticon-ellipsis-16:before {
+  content: "\f12c";
+  font-size: 16px;
+}
+.spoticon-ellipsis-24:before {
+  content: "\f12c";
+  font-size: 24px;
+  position: relative;
+  top: 1px;
+}
+.spoticon-add-16:before {
+  content: "\f138";
+  font-size: 16px;
+}
+.spoticon-added-16:before {
+  content: "\f10a";
+  font-size: 16px;
+}
+.spoticon-remove-16:before,
+.spoticon-x-16:before {
+  content: "\f160";
+  font-size: 16px;
+}
+.spoticon-queue-16:before {
+  content: "\f13a";
+  font-size: 16px;
+  -webkit-transform: translateX(-1px);
+  transform: translateX(-1px);
+}
+.spoticon-chart-down-16:before {
+  content: "\f25E";
+  font-size: 16px;
+}
+.spoticon-chart-down-32:before {
+  content: "\f25F";
+  font-size: 32px;
+}
+.spoticon-chart-new-16:before {
+  content: "\f25B";
+  font-size: 16px;
+}
+.spoticon-chart-new-32:before {
+  content: "\f25C";
+  font-size: 32px;
+}
+.spoticon-chart-up-16:before {
+  content: "\f262";
+  font-size: 16px;
+}
+.spoticon-chart-up-32:before {
+  content: "\f263";
+  font-size: 32px;
+}
+.spoticon-radio-24:before {
+  content: "\f1C7";
+  font-size: 24px;
+}
+.spoticon-search-24:before {
+  content: "\f140";
+  font-size: 24px;
+}
+.spoticon-add-to-playlist-24:before {
+  content: "\f3AC";
+  font-size: 24px;
+}
+.spoticon-browse-24:before {
+  content: "\f393";
+  font-size: 24px;
+}
+.spoticon-now-playing-24:before {
+  content: "\f346";
+  font-size: 24px;
+}
+.spoticon-artist-24:before {
+  content: "\f392";
+  font-size: 24px;
+}
+.spoticon-androidshare-24:before {
+  content: "\f48f";
+  font-size: 24px;
+}
+.spoticon-me-alt-24:before {
+  content: "\f44A";
+  font-size: 24px;
+}
+.spoticon-playlist-24:before {
+  content: "\f3A2";
+  font-size: 24px;
+}
+.spoticon-podcasts-16:before {
+  content: "\f238";
+  font-size: 16px;
+}
+.spoticon-fullscreen-16:before {
+  content: "\f28C";
+  font-size: 16px;
+}
+.spoticon-fullscreen-24:before {
+  content: "\f3CE";
+  font-size: 24px;
+}
+.spoticon-fullscreen-32:before {
+  content: "\f28D";
+  font-size: 32px;
+}
+.spoticon-minimise-16:before {
+  content: "\f268";
+  font-size: 16px;
+}
+.spoticon-minimise-24:before {
+  content: "\f3CB";
+  font-size: 24px;
+}
+.spoticon-minimise-32:before {
+  content: "\f269";
+  font-size: 32px;
+}
+.spoticon-helpcircle-16:before {
+  content: "\f23B";
+  font-size: 16px;
+}
+
+.control-button--circled:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 500px;
+  border: 1px solid hsla(0, 0%, 100%, 0.6);
+}
+
+.control-button-wrapper {
+  position: relative;
+}
+
+.player-controls {
+  width: 224px;
+  margin-bottom: 12px;
+}
+
+.playback-bar {
+  width: 100%;
+}
+
+.progress-bar {
+  height: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.playback-bar {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
+}
+
+.progress-bar--wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.progress-bar {
+  background-color: #404040;
+  border-radius: 2px;
+  height: 4px;
+  width: 100%;
+}
+
+.progress-bar--slider {
+  outline: none;
+  background-color: #fff;
+  border: 0;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  margin-top: -6px;
+  z-index: 100;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 50%;
+}
+
+.playback-bar__progress-time {
+  font-size: 11px;
+  letter-spacing: 0.015em;
+  min-width: 40px;
+  text-align: center;
+}
